@@ -1,11 +1,15 @@
 package com.example.administrator.weatherforecast;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -55,4 +59,20 @@ public class Weatherforecast extends AppCompatActivity {
             }
         });
     }
+}
+public class CustomAdapter extends BaseAdapter{
+    private List<Province> provinces;
+    private LayoutInflater inflater;
+    private Context context;
+
+    public CustomAdapter(List<Province>provinces,Context context){
+        this.provinces=provinces;
+        inflater=LayoutInflater.from(context);
+        this.context=context;
+    }
+
+    public View getView(final int position, View convertView, ViewGroup parent){
+
+    }
+
 }
