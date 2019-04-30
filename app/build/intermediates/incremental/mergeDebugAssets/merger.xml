@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="D:\tang\WeatherForecast\app\src\main\assets"><file name="location.json" path="D:\tang\WeatherForecast\app\src\main\assets\location.json"/><file path="D:\tang\WeatherForecast\app\src\main\assets\weather.josn"/></source><source path="D:\tang\WeatherForecast\app\build\generated\assets\shaders\debug"/></dataSet><dataSet config="debug"><source path="D:\tang\WeatherForecast\app\src\debug\assets"/></dataSet></merger>

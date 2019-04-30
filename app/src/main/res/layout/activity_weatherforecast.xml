@@ -9,6 +9,12 @@
    <ListView
        android:id="@+id/Lv"
        android:layout_width="match_parent"
-       android:layout_height="wrap_content"><!--列表控件,用于显示解析后的省内容--></ListView>
+       android:layout_height="wrap_content">
+
+
+
+      <!--列表控件,用于显示解析后的省内容-->
+
+   </ListView>
 
 </android.support.constraint.ConstraintLayout>

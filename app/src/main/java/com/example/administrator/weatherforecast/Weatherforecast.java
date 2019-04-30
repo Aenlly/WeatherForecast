@@ -60,6 +60,7 @@ public class Weatherforecast extends AppCompatActivity {
         });
     }
 }
+/*
 public class CustomAdapter extends BaseAdapter{
     private List<Province> provinces;
     private LayoutInflater inflater;
@@ -75,4 +76,4 @@ public class CustomAdapter extends BaseAdapter{
 
     }
 
-}
+}*/

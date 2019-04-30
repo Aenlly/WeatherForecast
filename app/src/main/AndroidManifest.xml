@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Weatherforecast">
+
+        </activity>
+        <activity android:name=".Networkprogramming">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
