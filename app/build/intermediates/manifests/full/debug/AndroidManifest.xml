@@ -8,6 +8,8 @@
         android:minSdkVersion="15"
         android:targetSdkVersion="28" />
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:appComponentFactory="android.support.v4.app.CoreComponentFactory"
@@ -18,15 +20,15 @@
         android:supportsRtl="true"
         android:testOnly="true"
         android:theme="@style/AppTheme" >
-        <activity android:name="com.example.administrator.weatherforecast.Weatherforecast" >
-        </activity>
-        <activity android:name="com.example.administrator.weatherforecast.Networkprogramming" >
+        <activity android:name="com.example.administrator.weatherforecast.WeatherForecasts" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.example.administrator.weatherforecast.Weatherforecast" />
+        <activity android:name="com.example.administrator.weatherforecast.Networkprogramming" />
     </application>
 
 </manifest>
