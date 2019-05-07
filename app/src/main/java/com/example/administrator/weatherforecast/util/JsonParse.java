@@ -28,10 +28,9 @@ public class JsonParse {
         Weather weather = gson.fromJson(jsonObject.toString(), Weather.class);
         return weather;
     }
-    public static List<Province> parseProvince(Context context) {
+    public static List<Province> parseProvince(String ps) {
         List<Province> provinces=new ArrayList<Province>();
         try {
-            String ps =readJsonFile("location.json", context);
             JSONArray jsonArray = new JSONArray(ps);
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObject=jsonArray.getJSONObject(i);
