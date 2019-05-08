@@ -6,6 +6,15 @@ public class County {
     private String code;
     private int level;
     private String supper;//上一级地区的code号码
+    private String weather;
+
+    public String getWeather() {
+        return weather;
+    }
+
+    public void setWeather(String weather) {
+        this.weather = weather;
+    }
 
     public County(String name, String code, String supper) {
         this.name = name;

@@ -21,6 +21,29 @@ public class SQLMyHelper extends SQLiteOpenHelper {
                 "    name STRING  UNIQUE" +
                 "                 NOT NULL" +
                 ")");
+        /*db.execSQL("CREATE TABLE cities (" +
+                "    id   INTEGER PRIMARY KEY autoincrement" +
+                "                 UNIQUE" +
+                "                 NOT NULL," +
+                "    code STRING  UNIQUE" +
+                "                 NOT NULL," +
+                "    name STRING  UNIQUE" +
+                "                 NOT NULL" +
+                "    superCode STRING  UNIQUE" +
+                "                 NOT NULL" +
+                ")");
+        db.execSQL("CREATE TABLE citys (" +
+                "    id   INTEGER PRIMARY KEY autoincrement" +
+                "                 UNIQUE" +
+                "                 NOT NULL," +
+                "    code STRING  UNIQUE" +
+                "                 NOT NULL," +
+                "    name STRING  UNIQUE" +
+                "                 NOT NULL" +
+                "    superCode STRING  UNIQUE" +
+                "                 NOT NULL" +
+                "    weatherId String  UNIQUE" +
+                ")");*/
     }
 
     @Override
