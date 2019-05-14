@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import com.example.administrator.weatherforecast.bean.County;
 import com.example.administrator.weatherforecast.bean.Province;
 import com.example.administrator.weatherforecast.util.SQLMyHelper;
 import com.example.administrator.weatherforecast.bean.Province;
@@ -33,6 +34,8 @@ public class ProvinceDao {
         //第一步：通过工具获取一个数据库对象
         SQLiteDatabase db = myHelper.getReadableDatabase();
         Cursor cursor = db.rawQuery("select * from provinces where code=?", new String[]{code});
+        //Cursor游标类型：相当于java集合list，指针指向第一条记录前面
+//        游标结果集有一个当前记录行的指针，刚开始指向第一条记录前面，指针移动moveToNext分发，如果当前记录为空，则返回为假
         if (cursor.moveToNext()) return true;//说明表中已经存在这个省，不需要再插入
         else return false;
     }
@@ -44,23 +47,57 @@ public class ProvinceDao {
         return false;
     }
 
-    public List<String> getAllProvinceName() {
-        SQLiteDatabase db = myHelper.getReadableDatabase();
-        Cursor cursor = db.rawQuery("select name from provinces", null);
-
-        List<String> provinceNames = new ArrayList<String>();
-
-        while (cursor.moveToNext()) {
-            String pn = cursor.getString(cursor.getColumnIndex("name"));
-            provinceNames.add(pn);
+    public List<Province> getAllProvinces() {
+        //通过数据库对象，到数据表中找出所有的省对象
+        SQLiteDatabase db=myHelper.getReadableDatabase();
+        Cursor result=db.rawQuery("select * from provinces",null);
+        List<Province> provinces=new ArrayList<Province>();
+        while (result.moveToNext()){
+            //取出游标当前的记录,getString表示取出的这一字段的值是字符串
+//            result.getString(列的序号)，用一个方法将列名转化成序号
+            String code=result.getString(result.getColumnIndex("code"));//返回当前记录字段为code的值
+            String name=result.getString(result.getColumnIndex("name"));
+            provinces.add(new Province(code,name));
         }
-        db.close();
-        cursor.close();
-        return provinceNames;
+        return provinces;
     }
 
-    public void del(String name){
+
+    public List<Province> getLimitProvinces(int beginRow,int pageSize) {
+        //通过数据库对象，到数据表中找出省记录，从beginRow这一行开始，共计pageSize多行的记录
+        SQLiteDatabase db=myHelper.getReadableDatabase();
+        //beginRow开始位置
+        Cursor result=db.rawQuery("select * from provinces limit ?,?",
+                new String[]{ beginRow + "",pageSize + "" });
+        List<Province> provinces=new ArrayList<Province>();
+        while (result.moveToNext()){
+            //取出游标当前的记录,getString表示取出的这一字段的值是字符串
+//            result.getString(列的序号)，用一个方法将列名转化成序号
+            String code=result.getString(result.getColumnIndex("code"));//返回当前记录字段为code的值
+            String name=result.getString(result.getColumnIndex("name"));
+            provinces.add(new Province(code,name));
+            Log.i("myInfo0",name);
+        }
+        return provinces;
+    }
+
+
+    public void del(Province province){
         SQLiteDatabase db=myHelper.getWritableDatabase();
-        db.execSQL("delete from provinces where name=?",new String[]{name});
+        db.execSQL("delete from provinces where code=?",new String[]{province.getCode()});
+    }
+
+    public Province getProvinceByCode(String code){
+        //通过数据库对象，到数据表中找出所有的省对象
+        SQLiteDatabase db=myHelper.getReadableDatabase();
+        Cursor result=db.rawQuery("select * from provinces where code=?",new String[]{code});
+        Province province=null;
+        if (result.moveToNext()){
+            //取出游标当前的记录,getString表示取出的这一字段的值是字符串
+//            result.getString(列的序号)，用一个方法将列名转化成序号
+            String name=result.getString(result.getColumnIndex("name"));
+            province=new Province(code,name);
+        }
+        return province;
     }
 }

@@ -18,6 +18,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:testOnly="true"
         android:theme="@style/AppTheme" >
         <activity android:name="com.example.administrator.weatherforecast.WeatherForecasts" >
             <intent-filter>
@@ -28,6 +29,7 @@
         </activity>
         <activity android:name="com.example.administrator.weatherforecast.Weatherforecast" />
         <activity android:name="com.example.administrator.weatherforecast.Networkprogramming" />
+        <activity android:name="com.example.administrator.weatherforecast.WeathActivity" />
     </application>
 
 </manifest>

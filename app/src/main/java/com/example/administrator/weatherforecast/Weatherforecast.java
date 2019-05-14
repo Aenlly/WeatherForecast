@@ -25,7 +25,9 @@ public class Weatherforecast extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weatherforecast);
-        final ProvinceDao provinceDao=new ProvinceDao(this);
+        final ProvinceDao provinceDao = new ProvinceDao(this);
+    }
+}/*
        List<Province> provinces= JsonParse.parseProvince(this);
         for(int i=0;i<provinces.size();i++){
             provinceDao.saveDb(provinces.get(i));

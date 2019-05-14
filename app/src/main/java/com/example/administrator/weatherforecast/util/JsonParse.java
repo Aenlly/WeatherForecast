@@ -3,6 +3,8 @@ package com.example.administrator.weatherforecast.util;
 import android.content.Context;
 import android.util.Log;
 
+import com.example.administrator.weatherforecast.bean.City;
+import com.example.administrator.weatherforecast.bean.County;
 import com.example.administrator.weatherforecast.bean.Province;
 import com.example.administrator.weatherforecast.bean.Weather;
 
@@ -36,13 +38,46 @@ public class JsonParse {
                 JSONObject jsonObject=jsonArray.getJSONObject(i);
                 String name = jsonObject.optString("name");
                 String code = jsonObject.optString("id");
-                Log.i("myInfo",name+code);
+                //Log.i("myInfo",name+code);
                 provinces.add(new Province(code,name));
             }
         }catch (Exception e){
             e.printStackTrace();
         }
         return  provinces;
+    }
+
+    public static List<City> parseCity(String ps,String provinceCode) {//将ps解析成市集合
+        List<City> cities=new ArrayList<City>();
+        try {
+            JSONArray jsonArray = new JSONArray(ps);
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonObject=jsonArray.getJSONObject(i);
+                String name = jsonObject.optString("name");
+                String code = jsonObject.optString("id");
+                cities.add(new City(code,name,provinceCode));
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return  cities;
+    }
+
+    public static List<County> parseCounty(String ps,String cityCode) {//将ps解析成县集合
+        List<County> counties=new ArrayList<County>();
+        try {
+            JSONArray jsonArray = new JSONArray(ps);
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonObject=jsonArray.getJSONObject(i);
+                String name = jsonObject.optString("name");
+                String code = jsonObject.optString("id");
+                String weatherId=jsonObject.optString("weather_id");
+                counties.add(new County(code,name,cityCode,weatherId));
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return  counties;
     }
 
     public static String readJsonFile(String fileName, Context context) throws Exception {
@@ -53,7 +88,7 @@ public class JsonParse {
 
         //FileInputStream inputStream=new FileInputStream("assets/location.json");
         InputStream in = context.getResources().getAssets().open(fileName);
-        InputStreamReader reader = new InputStreamReader(in, "utf-8");//字符串的类型
+        InputStreamReader reader = new InputStreamReader(in, "utf-8");
         BufferedReader bf = new BufferedReader(reader);
         StringBuffer sb = new StringBuffer();
         while (true) {
